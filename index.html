@@ -7,41 +7,89 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         crossorigin="anonymous">
-
-
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="todo">
         <div class="row">
-            <button type="button" class="btn btn-block btn-success" id="spanishVerb" ></button>
+            <button type="button" class="btn btn-block btn-primary"></button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-block btn-secundary disabled">
+                <img src="img/reino-unido.png" />
+                Test Verbos Irregulares
+                <img src="img/reino-unido.png" />
+            </button>
         </div>
         <br>
         <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-block btn-secondary" id="primeraForm">Una
-                    linea</button>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <button type="button" class="btn btn-block btn-primary">Cambia de nivel</button>
             </div>
-            <div class="col">
-                <button type="button" class="btn btn-block btn-secondary" id="segundaForma">Middle</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-block btn-secondary" id="terceraForma">Right</button>
-            </div>
+            <div class="col-4"></div>
         </div>
+        <br>
+        <div class="row">
+            <button type="button" class="btn btn-block btn-secundary disabled">
+                Elige el numero de verbos
+            </button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-2">
+                <a id="valor10" class="btn btn-block btn-primary" role="button"
+                    onclick="dameNumeroDeVerbos('10');">10</a>
+            </div>
+            <div class="col-2">
+                <a id="valor20" class="btn btn-block btn-primary"  role="button"  onclick="dameNumeroDeVerbos('20');">20</a>
+            </div>
+            <div class="col-2">
+                <a id="valor30" class="btn btn-block btn-primary" role="button"  onclick="dameNumeroDeVerbos('30');">30</a>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-block btn-primary"  onclick="dameNumeroDeVerbos('40');">40</button>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-block btn-primary" onclick="dameNumeroDeVerbos('50');">50</button>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-2">
+                <button id="valor" type="button" class="btn btn-block btn-primary"  onclick="dameNumeroDeVerbos('60');">60</button>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-block btn-primary"  onclick="dameNumeroDeVerbos('70');">70</button>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-block btn-primary"  onclick="dameNumeroDeVerbos('90');">90</button>
+            </div>
+            <div class="col-2">
+                <button id="valor140" type="button" class="btn btn-block btn-primary"
+                onclick="dameNumeroDeVerbos('140');">140</button>
+            </div>
+            <div class="col-2"></div>
+
+        </div>
+
     </div>
-    <script src="js/listaVerbos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        function eligeVerbo(){
-            var verboelegido =Math.floor( Math.random()*verbos.length);
-        document.getElementById('spanishVerb').innerHTML=verbos[verboelegido][3];
-        document.getElementById('primeraForm').innerHTML=verbos[verboelegido][0];
-        document.getElementById('segundaForma').innerHTML=verbos[verboelegido][1];
-        document.getElementById('terceraForma').innerHTML=verbos[verboelegido][2];
+        var nivel="";
+        var columna="";
+        var _coumna="";
+        var jugando=0;
+        var marcador=0;
+        width=0;
+        function dameNumeroDeVerbos(_nivel) {
+            $('#todo').load('prueba.html');
+            nivel=_nivel;
         }
-        eligeVerbo();
-        
-    
+
     </script>
 
 </body>

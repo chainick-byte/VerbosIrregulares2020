@@ -1,0 +1,151 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <button id="miNivel" type="button" class="btn btn-block btn-primary disabled"></button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-block btn-secundary disabled">
+                <img src="img/reino-unido.png" />
+                Test Verbos Irregulares
+                <img src="img/reino-unido.png" />
+            </button>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-block btn-primary disabled"></button>
+        </div>
+        <div class="row">
+            <button type="button" id="marcador" class="btn btn-block btn-primary disabled">0</button>
+        </div>
+
+        <div class="progress">
+            <div id="barraProgreso" class="progress-bar bg-warning" role="progressbar" style="width: 0%;" aria-valuenow="75"
+                aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+ 
+        <div class="row">
+            <button type="button" class="btn btn-block btn-secundary disabled" id="spanishVerb"></button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <div id="primeraForma"></div>
+            </div>
+            <div class="col">
+                <div id="segundaForma"></div>
+            </div>
+            <div class="col">
+                <div id="terceraForma"></div>
+
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <button id="botonComprobar" type="button" class="btn btn-block btn-primary"
+                onclick="imprimo(),chequeaRespuesta(columna)">Comprobar</button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <button type="button" class="btn btn-block btn-primary" onclick="cambiaNivel()">Cambia de nivel</button>
+            </div>
+            <div class="col-4">
+                
+            </div>
+        </div>
+    </div>
+    <script src="js/listaVerbos.js"></script>
+    <script>
+
+
+        function eligeVerbo() {
+            var verboelegido = Math.floor(Math.random() * verbos.length);
+            var tiempoRandom = Math.floor(Math.random() * 3);
+            document.getElementById('spanishVerb').innerHTML = verbos[verboelegido][3];
+            if (tiempoRandom == 0) {
+                document.getElementById('primeraForma').innerHTML = '<input id="miform" class="form-control form-sl cajatexto" type="text" placeholder="Dame verbo" > ';
+                columna = verbos[verboelegido][0];
+            } else {
+                document.getElementById('primeraForma').innerHTML =
+                    '<button type="button" class="btn btn-block btn-primary" id="primeraForma">' + verbos[verboelegido][0] + '</button>';
+            }
+            if (tiempoRandom == 1) {
+                document.getElementById('segundaForma').innerHTML = '<input id="miform" class="form-control form-sl cajatexto" type="text" placeholder="Dame verbo"> ';
+                columna = verbos[verboelegido][1];
+            } else {
+                document.getElementById('segundaForma').innerHTML =
+                    '<button type="button" class="btn btn-block btn-primary" id="segundaForma">' + verbos[verboelegido][1] + '</button>';
+            }
+
+            if (tiempoRandom == 2) {
+                document.getElementById('terceraForma').innerHTML = '<input id="miform" class="form-control form-sl cajatexto" type="text" placeholder="Dame verbo"> ';
+                columna = verbos[verboelegido][2];
+            } else {
+                document.getElementById('terceraForma').innerHTML =
+                    '<button type="button" class="btn btn-block btn-primary" id="terceraForma">' + verbos[verboelegido][2] + '</button>';
+            }
+
+
+        }
+
+        eligeVerbo();
+        function dameNivel() {
+            document.getElementById('miNivel').innerHTML = 'Nivel: ' + nivel;
+        }
+        dameNivel();
+
+        function chequeaRespuesta(columna) {
+            if (jugando == 0) {
+                jugando = 1;
+                var _columna = document.getElementById('miform').value;
+                if (_columna == columna) {
+                    console.log('funciona');
+                    document.getElementById('botonComprobar').classList.remove('btn-primary');
+                    document.getElementById('botonComprobar').classList.add('btn-success');
+                    document.getElementById('botonComprobar').innerText = "Ooh it's correct!!!";
+                    marcador++;
+
+
+
+                } else {
+                    console.log('no funciona');
+                    document.getElementById('botonComprobar').classList.add('btn-danger');
+                    document.getElementById('botonComprobar').innerText = columna;
+                    marcador = 0;
+                }
+
+            } else {
+
+                document.getElementById('botonComprobar').classList.remove('btn-success');
+                document.getElementById('botonComprobar').classList.remove('btn-danger');
+                document.getElementById('botonComprobar').classList.add('btn-primary');
+                document.getElementById('botonComprobar').innerText = "Comprobar";
+                jugando = 0;
+                eligeVerbo();
+            }
+            document.getElementById('marcador').innerText = marcador;
+
+        }
+        function imprimo() {
+            console.log(nivel);
+        }
+        function cambiaNivel() {
+            location.reload();
+        }
+        var progress;
+        function barraProgresso(){
+            var element =  document.getElementById('barraProgreso');
+            console.log(width);
+            progress=setInterval(function(){
+                
+                element.style.width=100*(marcador/nivel)+'%';
+                console.log(element.style.width+'<=================');
+               
+            },250);
+
+        }
+        barraProgresso();
+
+    </script>
+
+</body>
